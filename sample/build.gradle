@@ -17,7 +17,7 @@ repositories {
 }
 
 android {
-    namespace 'com.github.barteks'
+    namespace 'com.github.barteksc'
     compileSdkVersion 33
     buildToolsVersion '33.0.2'
 

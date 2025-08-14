@@ -4,7 +4,6 @@ buildscript {
           google()          // phải đứng trước jcenter nếu vẫn còn
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        jcenter()
     }
     dependencies {
         // Nâng cấp Android Gradle Plugin lên 8.0.2
@@ -22,6 +21,8 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
-    }
+       google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' } 
+     }
 }

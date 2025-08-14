@@ -1,32 +1,11 @@
-apply plugin: 'com.android.library'
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'android-pdf-viewer'
-
-    publishedGroupId = 'com.github.barteksc'
-    libraryName = 'AndroidPdfViewer'
-    artifact = 'android-pdf-viewer'
-
-    libraryDescription = 'Android view for displaying PDFs rendered with PdfiumAndroid'
-
-    siteUrl = 'https://github.com/barteksc/AndroidPdfViewer'
-    gitUrl = 'https://github.com/barteksc/AndroidPdfViewer.git'
-
-    libraryVersion = '2.8.2'
-
-    developerId = 'barteksc'
-    developerName = 'Bartosz Schiller'
-    developerEmail = 'barteksch@boo.pl'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
     compileSdkVersion 33
-    buildToolsVersion '33.0.2'  // nâng cấp build tools mới
+    buildToolsVersion '33.0.2'
     namespace 'com.ngocnk.pdfviewer'
 
     defaultConfig {
@@ -35,9 +14,46 @@ android {
         versionCode 1
         versionName "2.8.2"
     }
-
 }
 
 dependencies {
     implementation 'com.github.barteksc:pdfium-android:1.7.1'
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            afterEvaluate {
+                from components.release
+            }
+            groupId = 'com.github.barteksc'
+            artifactId = 'android-pdf-viewer'
+            version = '2.8.2'
+
+            pom {
+                name.set('AndroidPdfViewer')
+                description.set('Android view for displaying PDFs rendered with PdfiumAndroid')
+                url.set('https://github.com/barteksc/AndroidPdfViewer')
+
+                licenses {
+                    license {
+                        name.set('The Apache Software License, Version 2.0')
+                        url.set('http://www.apache.org/licenses/LICENSE-2.0.txt')
+                    }
+                }
+                developers {
+                    developer {
+                        id.set('barteksc')
+                        name.set('Bartosz Schiller')
+                        email.set('barteksch@boo.pl')
+                    }
+                }
+                scm {
+                    connection.set('scm:git:github.com/barteksc/AndroidPdfViewer.git')
+                    developerConnection.set('scm:git:ssh://github.com/barteksc/AndroidPdfViewer.git')
+                    url.set('https://github.com/barteksc/AndroidPdfViewer')
+                }
+            }
+        }
+    }
 }

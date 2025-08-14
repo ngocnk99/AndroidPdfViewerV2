@@ -6,16 +6,9 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        // Nâng cấp Android Gradle Plugin lên 8.0.2
         classpath 'com.android.tools.build:gradle:8.0.0'
-
-        // Nếu bạn cần publish lên Maven/JitPack, android-maven-gradle-plugin vẫn dùng được
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
 
-        // Plugin android-apt đã deprecated, thay bằng annotationProcessor mặc định của Gradle
-        // Nếu vẫn muốn giữ, dùng phiên bản mới: 
-        // classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' 
-        // nhưng khuyến nghị bỏ đi và dùng annotationProcessor trong module build.gradle
     }
 }
 

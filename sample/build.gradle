@@ -1,13 +1,14 @@
-plugins {
-    id 'com.android.application'
-}
-
 buildscript {
     repositories {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
     }
+}
+
+plugins {
+    id 'com.android.application'
+    id 'maven-publish'  // Thêm plugin này để fix warning publishToMavenLocal
 }
 
 repositories {
@@ -37,4 +38,15 @@ dependencies {
 
     annotationProcessor 'org.androidannotations:androidannotations:4.0.0'
     compileOnly 'org.androidannotations:androidannotations-api:4.0.0'
+}
+
+// Thêm cấu hình publishing cho JitPack
+publishing {
+    publications {
+        maven(MavenPublication) {
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
 }

@@ -14,44 +14,52 @@ android {
         versionCode 1
         versionName "2.8.2"
     }
+    
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
     implementation 'com.github.barteksc:pdfium-android:1.7.1'
 }
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            afterEvaluate {
+// ✅ ĐÚNG - afterEvaluate wrap toàn bộ publishing block
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
                 from components.release
-            }
-            groupId = 'com.github.barteksc'
-            artifactId = 'android-pdf-viewer'
-            version = '2.8.2'
+                groupId = 'com.github.ngocnk99'  // Sửa thành username GitHub của bạn
+                artifactId = 'android-pdf-viewer'
+                version = '2.8.2'
 
-            pom {
-                name.set('AndroidPdfViewer')
-                description.set('Android view for displaying PDFs rendered with PdfiumAndroid')
-                url.set('https://github.com/barteksc/AndroidPdfViewer')
+                pom {
+                    name.set('AndroidPdfViewer')
+                    description.set('Android view for displaying PDFs rendered with PdfiumAndroid')
+                    url.set('https://github.com/ngocnk99/android-pdf-viewer')  // Sửa URL
 
-                licenses {
-                    license {
-                        name.set('The Apache Software License, Version 2.0')
-                        url.set('http://www.apache.org/licenses/LICENSE-2.0.txt')
+                    licenses {
+                        license {
+                            name.set('The Apache Software License, Version 2.0')
+                            url.set('http://www.apache.org/licenses/LICENSE-2.0.txt')
+                        }
                     }
-                }
-                developers {
-                    developer {
-                        id.set('barteksc')
-                        name.set('Bartosz Schiller')
-                        email.set('barteksch@boo.pl')
+                    developers {
+                        developer {
+                            id.set('ngocnk99')  // Sử dụng ID của bạn
+                            name.set('Ngoc NK')
+                            email.set('your-email@example.com')  // Email của bạn
+                        }
                     }
-                }
-                scm {
-                    connection.set('scm:git:github.com/barteksc/AndroidPdfViewer.git')
-                    developerConnection.set('scm:git:ssh://github.com/barteksc/AndroidPdfViewer.git')
-                    url.set('https://github.com/barteksc/AndroidPdfViewer')
+                    scm {
+                        connection.set('scm:git:github.com/ngocnk99/android-pdf-viewer.git')
+                        developerConnection.set('scm:git:ssh://github.com/ngocnk99/android-pdf-viewer.git')
+                        url.set('https://github.com/ngocnk99/android-pdf-viewer')
+                    }
                 }
             }
         }

@@ -20,9 +20,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
+    namespace 'com.ngocnk.pdfviewer'
+
     compileSdkVersion 33
     buildToolsVersion '33.0.2'  // nâng cấp build tools mới
-
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 34

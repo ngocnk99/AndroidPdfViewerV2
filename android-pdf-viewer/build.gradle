@@ -27,6 +27,7 @@ ext {
 android {
     compileSdkVersion 33
     buildToolsVersion '33.0.2'  // nâng cấp build tools mới
+    namespace 'com.ngocnk.pdfviewer'
 
     defaultConfig {
         minSdkVersion 23

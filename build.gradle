@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         // Nâng cấp Android Gradle Plugin lên 8.0.2
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.android.tools.build:gradle:8.0.0'
 
         // Nếu bạn cần publish lên Maven/JitPack, android-maven-gradle-plugin vẫn dùng được
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'

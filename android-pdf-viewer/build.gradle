@@ -14,11 +14,19 @@ android {
         versionCode 1
         versionName "2.8.2"
     }
-    
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile(
+                'proguard-android-optimize.txt'
+            ), 'proguard-rules.pro'
+        }
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
         }
     }
 }
@@ -27,16 +35,15 @@ dependencies {
     implementation 'com.github.barteksc:pdfium-android:1.7.1'
 }
 
-// Cấu hình để JitPack có thể build
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                
-                groupId = 'com.github.ngocnk99'
-                artifactId = 'pdfviewer'
-                version = android.defaultConfig.versionName
+publishing {
+    publications {
+        create("release", MavenPublication) {
+            groupId = "com.github.ngocnk99"
+            artifactId = "pdfviewer"
+            version = "2.8.2"
+
+            afterEvaluate {
+                from(components["release"])
             }
         }
     }
